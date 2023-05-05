@@ -1,0 +1,57 @@
+type Content @embedded {
+  image: String!
+  title: String!
+}
+
+type Steps @embedded {
+  steps: Int!
+}
+
+type EntirePageContent @embedded {
+  ImageSrc: String!
+  ImageAlt: String!
+  Title: String!
+  Title2: String!
+  Author: String!
+  Text: String!
+}
+
+type dataSample @embedded {
+  name: String!
+  show: Boolean!
+}
+
+type contentLeft @embedded {
+  Title: String!
+  ImageSrc: String!
+}
+
+type contentRight @embedded {
+  Title: String!
+  ImageSrc: String!
+}
+
+type Day1Content @collection(name: "day1") {
+  content: [Content!]
+}
+
+type Day2Content {
+  content: [Steps!]!
+}
+
+type Day3Content {
+  content: EntirePageContent!
+}
+
+type Day6Content {
+  content: [dataSample!]!
+}
+
+type Day7Content {
+  Leftcontent: contentLeft!
+  RightContent: contentRight!
+}
+
+type Query {
+  allContent: [Day1Content!]! @index(name: "all_content")
+}
